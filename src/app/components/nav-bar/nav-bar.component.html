@@ -1,0 +1,170 @@
+<nav class="navbar navbar-expand-lg navbar-light col-md-12 fixed-top">
+  <a class="navbar-brand col-md-3" href="#">
+    <h2 id="websiteName">PrintoGram</h2>
+  </a>
+  <!-- <a class="navbar-brand" href="#">
+    <img src="../../../assets/images/printer_icon_dark.ico" class="img-fluid" />
+  </a> -->
+  <button
+    class="navbar-toggler navbar-toggler-right"
+    type="button"
+    (click)="isNavbarCollapsed = !isNavbarCollapsed"
+    data-toggle="collapse"
+    data-target="#collapsibleNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    [ngbCollapse]="isNavbarCollapsed"
+    class="collapse navbar-collapse col-md-9"
+    id="collapsibleNavbar"
+  >
+    <ul class="navbar-nav col-md-6">
+      <!-- <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['']"
+          routerLinkActive="router-link-active"
+        >
+          Welcome
+        </a>
+      </li> -->
+      <li class="nav-item" *ngIf="LoginStatus$ | async as LoginStatus">
+        <a
+          *ngIf="LoginStatus"
+          class="nav-link"
+          (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          [routerLink]="['homePage']"
+          routerLinkActive="router-link-active"
+        >
+          <i class="fa fa-home"></i>
+          Home
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="LoginStatus$ | async as LoginStatus">
+        <a
+          *ngIf="LoginStatus"
+          class="nav-link"
+          (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          [routerLink]="['fileManagement']"
+          routerLinkActive="router-link-active"
+        >
+          <i class="fa fa-print"></i>
+          Print
+        </a>
+      </li>
+      <li
+        class="nav-item"
+        *ngIf="LoginStatus$ && AdminStatus$ | async as LoginStatus"
+      >
+        <a
+          *ngIf="LoginStatus"
+          class="nav-link"
+          (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          [routerLink]="['allUsers']"
+          routerLinkActive="router-link-active"
+        >
+          <i class="fa fa-users"></i>
+          View Users
+        </a>
+      </li>
+      <li
+        class="nav-item"
+        *ngIf="LoginStatus$ && AdminStatus$ | async as LoginStatus"
+      >
+        <a
+          *ngIf="LoginStatus"
+          class="nav-link"
+          (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          [routerLink]="['allPrinters']"
+          routerLinkActive="router-link-active"
+        >
+          <i class="fa fa-print"></i>
+          View Printers
+        </a>
+      </li>
+      <!-- <li class="nav-item" *ngIf="LoginStatus$ | async as LoginStatus">
+        <a
+          *ngIf="LoginStatus"
+          class="nav-link"
+          (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          [routerLink]="['profile']"
+          routerLinkActive="router-link-active"
+        >
+          <i class="fa fa-user"></i>
+          Profile
+        </a>
+      </li>-->
+    </ul>
+    <ul id="end-item col-md-3" class="navbar-nav ml-auto">
+      <!-- <li class="nav-item" *ngIf="!(LoginStatus$ | async) as LoginStatus">
+        <a
+          *ngIf="LoginStatus"
+          class="nav-link"
+          [routerLink]="['register']"
+          routerLinkActive="router-link-active"
+        >
+          <i class="fa fa-user-plus"></i>
+          Register
+        </a>
+      </li> -->
+      <li class="nav-item" *ngIf="!(LoginStatus$ | async) as LoginStatus">
+        <a
+          *ngIf="LoginStatus"
+          class="nav-link"
+          (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          [routerLink]="['login']"
+          routerLinkActive="router-link-active"
+        >
+          <i class="fa fa-sign-in"></i>
+          Login
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="LoginStatus$ | async as LoginStatus">
+        <mat-menu #appMenu="matMenu">
+          <button
+            mat-menu-item
+            [routerLink]="['profile']"
+            routerLinkActive="router-link-active"
+          >
+            Profile
+          </button>
+          <button
+            mat-menu-item
+            (click)="logout()"
+            [routerLink]="['login']"
+            routerLinkActive="router-link-active"
+          >
+            Logout
+          </button>
+        </mat-menu>
+
+        <a class="user-button" [matMenuTriggerFor]="appMenu">
+          <span>{{ user.first_name }} {{ user.last_name }}</span>
+          <div class="image-cropper">
+            <img
+              class="profile-img"
+              src="{{ userProfilePicSrc }}"
+              alt="Avatar"
+            />
+          </div>
+        </a>
+
+        <!--  <a
+          *ngIf="LoginStatus"
+          (click)="logout()"
+          class="nav-link"
+          (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          [routerLink]="['login']"
+          routerLinkActive="router-link-active"
+        >
+          <i class="fa fa-sign-out"></i>
+          Logout
+        </a>-->
+      </li>
+    </ul>
+  </div>
+</nav>

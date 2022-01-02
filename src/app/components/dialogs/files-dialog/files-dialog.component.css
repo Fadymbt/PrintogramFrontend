@@ -1,0 +1,41 @@
+/* make sure the gcode preview dialog does not have a background image *//*::ng-deep*/
+
+::ng-deep.mat-dialog-container {
+  background-image: none !important;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.dialog-container {
+/*  padding: 15px;*/
+  background: rgba(255,255,255,0.95) !important;
+}
+
+#search-input {
+  border-radius: 50px;
+  font-family: Arial, FontAwesome;
+}
+
+#date-span {
+  color: black; /* Fallback for older browsers */
+  color: rgba(1, 1, 1, 0.5);
+  font-size: 10pt;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h5 {
+  color: black;
+}
+
+.btn {
+  background: #C4C4C4;
+  border-radius: 45px;
+  border-width: 0 ;
+  min-width: 110px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  color:  rgba(19, 19, 19, 0.72);
+}
+

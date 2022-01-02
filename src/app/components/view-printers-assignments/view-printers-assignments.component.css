@@ -1,0 +1,138 @@
+
+.col {
+    padding: 0;
+}
+
+.container-main {
+    display: flex;
+    padding: 20px;
+}
+
+.line-center {
+    background-color: lightgray;
+    height: 500px;
+    width: 1px;
+    margin: 0 10px;
+}
+
+.camera {
+    height: calc(100vh / 4);
+    background-color: gray;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: lightgray;
+    font-size: 50px;
+}
+
+.container-progress {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-bar {
+    display: flex;
+    position: relative;
+    height: 30px;
+    background-color: lightgray;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: gold;
+}
+
+.progress-status {
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.container-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+ button{
+    background-color: lightgray;
+    border: none;
+    border-radius: 99px;
+    padding: 5px 15px;
+  }
+
+/* ---------- Right Side --------- */
+
+.container-right{
+    width: 100%;
+}
+
+.assignment {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+}
+
+.assignment.current {
+    background-color: #ffe29690;
+}
+
+.assignment:hover:not(.current) {
+    background-color: rgba(63, 22, 22, 0.03);
+}
+
+.assignment-left {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.assignment-right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.user {
+    display: flex;
+    gap: 5px;
+}
+
+.user-pic {
+    height: 40px;
+    width: 40px;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-email {
+    font-size: 12px;
+}
+
+.model {
+    display: flex;
+    border: solid 1px gray;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: Revamped;
+  src: url(assets/fonts/Revamped-X3q1a.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url(assets/fonts/Poppins.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Sahitya;
+  src: url(assets/fonts/Sahitya-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Sahitya-Bold;
+  src: url(assets/fonts/Sahitya-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Righteous-Regular;
+  src: url(assets/fonts/Righteous-Regular.ttf) format("truetype");
+}
+
+/* * {
+  font-family: candara;
+} */
+
+body {
+  background-color: #e5e5e5 !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

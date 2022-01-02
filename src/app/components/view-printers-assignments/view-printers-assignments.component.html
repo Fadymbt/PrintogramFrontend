@@ -1,0 +1,44 @@
+
+<div class="container-main">
+    <div class="container-left col col-md-7">
+        <div class="camera">
+            <i class="fa fa-eye-slash"></i>
+        </div>
+        <div class="container-progress">
+            <div class="progress-stats">
+                <div class="time-passed">{{ currentPrintTimePassed | date:'H:mm:ss':'UTC'}}</div>
+                <div class="time-remaining">{{ currentPrintTimeRemaining | date:'H:mm:ss':'UTC'}} left </div>
+            </div>
+            <div class="progress-bar">
+                <div [style.width]="currentPrintProgress" class="progress-bar-fill"></div>
+                <span class="progress-status">{{ currentPrintProgress }}</span>
+            </div>
+        </div>
+        <div class="container-buttons">
+            <button (click)="debug()" class="pause">Pause</button>
+        </div>
+    </div>
+    <div class="line-center"></div>
+    <div class="container-right">
+        <div *ngFor="let print of prints; let i = index;" class="assignment" [ngClass]="{ current: i==0 }">
+            <div class="assignment-left">
+                {{ i+1 }}
+            </div>
+            <div class="assignment-right">
+                <div class="user">
+                    <div class="user-pic">
+                        <img src="getPrintUserPic(print)" alt="">
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">{{ getPrintUser(print).first_name + " " + getPrintUser(print).last_name}}</div>
+                        <div class="user-email">{{ getPrintUser(print).email }}</div>
+                    </div>
+                </div>
+                <div class="model">
+                    <i class="fa fa-cube"></i>
+                    <div class="model-name">{{ print.file_name }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

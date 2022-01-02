@@ -1,0 +1,308 @@
+
+<div class="area-container">
+  <div class="area-left col-md-3">
+    <div class="area-left-top">
+      <div class="area-header">
+        <div class="area-header-text">
+          <span class="area-header-text-main">Models </span>{{ listModels.length }}
+        </div>
+        <div class="search-box">
+          <i class="fa fa-search"></i>
+          <input
+            type="text"
+            placeholder="Search"
+            [(ngModel)]="searchInputModels"
+          />
+        </div>
+      </div>
+      <div class="area-header-line"></div>
+    </div>
+    <div class="user-card-container">
+      <div
+        *ngFor="let model of listModels"
+        class="user-card"
+        [ngClass]="{ selected: model == selectedModel }"
+        (click)="onSelectModel(model)"
+      >
+        <div *ngIf="compareModelToInput(model)" class="user-card-hideable">
+          <div class="user-picture">
+            <i class="fa fa-cube"></i>
+          </div>
+          <div class="user-information">
+            <div class="user-name">
+              {{ model.original_name }}
+            </div>
+            <div class="user-email">{{ model.created | date:'mediumDate' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="area-left-bottom">
+      <div class="area-buttom-line"></div>
+      <div
+        class="dropzone"
+        dropzone
+        (hovered)="toggleHover($event)"
+        (dropped)="onDrop($event)"
+        [class.hovering]="isHovering"
+      >
+        <h4>Drop files here</h4>
+        <h5>or</h5>
+
+        <label for="file-upload" class="custom-file-upload">
+          <div class="container">
+            <div class="row justify-content-center">Click here to browse</div>
+            <div class="row justify-content-center">
+              <i class="fa fa-upload fa-5x"></i><br />
+            </div>
+          </div>
+        </label>
+        <input
+          id="file-upload"
+          type="file"
+          multiple
+          (change)="onDrop($any($event.target).files)"
+        />
+      </div>
+      <h3 *ngIf="uploadFiles.length > 0">Uploading</h3>
+
+      <div *ngFor="let file of uploadFiles">
+        <app-upload-task
+          (fileToRemove)="fileToRemove($event)"
+          [file]="file"
+        ></app-upload-task>
+      </div>
+      <!-- 
+      <button class="button-add-user">
+        <i class="fa fa-user-plus"></i> Add Model
+      </button>        
+       -->
+    </div>
+  </div>
+
+  <!-- center -->
+  <div class="area-center col-md-6">
+    <div class="container-print-new"> <!-- PRINT NEW -->
+      <div class="center-headline">New Print</div>
+      <div class="center-line"></div>
+      <div class="print-new-box">
+        <div class="print-new-box-top">
+          <div class="print-new-box-top-item left">
+            <div *ngIf="selectedModel == null" class="print-new-header empty">- No Model Selected -</div>
+            <div *ngIf="selectedModel != null">
+              <div class="print-new-content">
+                <div class="print-new-header filled"> <i class="fa fa-cube"></i> {{ selectedModel.original_name }}</div>
+              </div>
+              <table>
+                <tr>
+                  <td class="category">Added:</td>
+                  <td class="value">{{ selectedModel.created | date:'mediumDate' }}</td>
+                </tr>
+                <tr>
+                  <td class="category">Size:</td>
+                  <td class="value">340mb</td>
+                </tr>
+                <tr>
+                  <td class="category">Duration:</td>
+                  <td class="value">120 minutes</td>
+                </tr>
+             </table>
+            </div>
+          </div>
+          <div class="print-new-box-top-item right">
+            <div *ngIf="selectedPrinter == null" class="print-new-header empty">- No Printer Selected -</div>
+            <div *ngIf="selectedPrinter != null" class="print-new-content printer">
+              <div class="print-new-header filled"> <i class="fa fa-print"></i> {{ selectedPrinter.name }}</div>
+              <table>
+                <tr>
+                  <td class="category">Status:</td>
+                  <td class="value">{{ selectedPrinter.status }}</td>
+                </tr>
+                <tr>
+                  <td class="category">Current Print:</td>
+                  <td class="value">10 Minutes left</td>
+                </tr>
+                <tr>
+                  <td class="category">Prints in Cue:</td>
+                  <td class="value">2 more prints</td>
+                </tr>
+              </table>
+              <div class="print-current-camera"><i class="fa fa-eye-slash"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="print-new-box-buttons">
+          <button (click)="startNewPrint()" [ngClass]="{ locked: selectedModel == null || selectedPrinter == null }">Print</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="listCurrentPrints.length > 0" class="container-print-current"> <!-- PRINT CURRENT -->
+      <div class="center-headline">
+        Current Prints <span class="headline-extra">{{listCurrentPrints.length}}</span>
+      </div>
+      <div class="center-line"></div>
+      <div class="grid-container">
+        <div *ngFor="let print of listCurrentPrints" class="grid-tile">
+          <div> <i class="fa fa-print"></i> printer_name</div>
+          <div class="print-current-camera"><i class="fa fa-eye-slash"></i></div>
+          <div class="model"><i class="fa fa-cube"></i>{{ print.file_name }}</div>
+          <div class="container-progress">
+              <div class="progress-stats">
+                  <div class="time-passed">{{ getTimePassed(print)|date:'H:mm:ss':'UTC' }}</div>
+                  <div class="time-remaining">{{ getTimeRemaining(print)| date:'H:mm:ss':'UTC' }} left</div>
+              </div>
+              <div class="progress-bar">
+                  <div [style.width]="getPrintProgress(print)" class="progress-bar-fill"></div>
+                  <span class="progress-status">{{ getPrintStatus(print) }}</span>
+              </div>
+          </div>
+          <div class="container-buttons">
+              <button class="">Pause</button>
+              <button class="">Cancel</button>
+          </div>            
+        </div>
+      </div>
+    </div>
+    <div *ngIf="listFinishedPrints.length > 0" class="container-print-done"> <!-- PRINT DONE -->
+      <div class="center-headline">
+        Finished Prints <span class="headline-extra">{{listFinishedPrints.length}}</span>
+      </div>
+      <div class="center-line"></div>
+      <div class="grid-container">
+        <div *ngFor="let print of listFinishedPrints" class="grid-tile">
+          <div>September 7, 2021</div>
+          <div class="model">Ship.gcode</div>
+          <div class="container-buttons">
+            <button class="primary">Picked Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- right -->
+  <div class="area-right col-md-3">
+    <div class="area-left-top">
+      <div class="area-header">
+        <div class="area-header-text">
+          <span class="area-header-text-main">Printers </span>{{ listPrinters.length }}
+        </div>
+        <div class="search-box">
+          <i class="fa fa-search"></i>
+          <input
+            type="text"
+            placeholder="Search"
+            [(ngModel)]="searchInputPrinters"
+          />
+        </div>
+      </div>
+      <div class="area-header-line"></div>
+    </div>
+    <div class="user-card-container">
+      <div
+        *ngFor="let printer of listPrinters"
+        class="user-card"
+        [ngClass]="{ selected: printer == selectedPrinter }"
+        (click)="onSelectPrinter(printer)"
+      >
+        <div *ngIf="comparePrinterToInput(printer)" class="user-card-hideable">
+          <div class="user-picture">
+            <i class="fa fa-print"></i>
+          </div>
+          <div class="user-information">
+            <div class="user-name">
+              {{ printer.name }}
+            </div>
+            <div class="user-email">
+              {{ printer.status }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="files-list">
+        <hr>
+        <app-files-preview
+          [refreshFilesIn]="refreshFilesOut"
+          (refreshFilesOut)="changeRefreshFilesStatus($event)"
+        ></app-files-preview>
+      </div>
+      <div
+        *ngIf="cannotUpload"
+        [ngClass]="FadeOutSuccessMsg()"
+        class="alert alert-danger"
+      >
+        {{ cannotUpload }}
+      </div>
+
+      <div
+        class="dropzone"
+        dropzone
+        (hovered)="toggleHover($event)"
+        (dropped)="onDrop($event)"
+        [class.hovering]="isHovering"
+      >
+        <h4>Drop files here</h4>
+        <h5>or</h5>
+
+        <label for="file-upload" class="custom-file-upload">
+          <div class="container">
+            <div class="row justify-content-center">Click here to browse</div>
+            <div class="row justify-content-center">
+              <i class="fa fa-upload fa-5x"></i><br />
+            </div>
+          </div>
+        </label>
+        <input
+          id="file-upload"
+          type="file"
+          multiple
+          (change)="onDrop($any($event.target).files)"
+        />
+      </div>
+      <h3 *ngIf="uploadFiles.length > 0">Uploading</h3>
+
+      <div *ngFor="let file of uploadFiles">
+        <app-upload-task
+          (fileToRemove)="fileToRemove($event)"
+          [file]="file"
+        ></app-upload-task>
+      </div>
+
+    </div>
+    <div class="col-md-10"></div>
+  </div>
+
+<app-files-preview
+  [refreshFilesIn]="refreshFilesOut"
+  (refreshFilesOut)="changeRefreshFilesStatus($event)"
+></app-files-preview>
+</div>
+ -->
+

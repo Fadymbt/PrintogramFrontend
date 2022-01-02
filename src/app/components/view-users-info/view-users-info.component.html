@@ -1,0 +1,115 @@
+<div class="info-container">
+  <table>
+    <tr [ngClass]="{ editing: editingName }">
+      <td class="table-category">Name:</td>
+      <td class="table-value">
+        <div *ngIf="!editingName">
+          {{ selectedUser.first_name + " " + selectedUser.last_name }}
+        </div>
+        <div *ngIf="editingName" class="edit-name">
+          <input
+            type="text"
+            [(ngModel)]="valueNameFirst"
+            placeholder="First Name"
+          />
+          <input
+            type="text"
+            [(ngModel)]="valueNameLast"
+            placeholder="Last Name"
+          />
+        </div>
+      </td>
+      <td class="table-edit">
+        <i *ngIf="!editingName" (click)="OnEditName()" class="fa fa-edit"></i>
+        <button
+          *ngIf="editingName"
+          (click)="OnEditNameSave()"
+          class="button-save"
+        >
+          Save
+        </button>
+        <button
+          *ngIf="editingName"
+          (click)="CloseEditingMode()"
+          class="button-cancel"
+        >
+          Cancel
+        </button>
+      </td>
+    </tr>
+    <tr [ngClass]="{ editing: editingEmail }">
+      <td class="table-category">E-Mail:</td>
+      <td class="table-value">
+        <div *ngIf="!editingEmail">{{ selectedUser.email }}</div>
+        <input
+          *ngIf="editingEmail"
+          type="text"
+          [(ngModel)]="valueEmail"
+          placeholder="E-Mail"
+        />
+      </td>
+      <td class="table-edit">
+        <i *ngIf="!editingEmail" (click)="OnEditEmail()" class="fa fa-edit"></i>
+        <button
+          *ngIf="editingEmail"
+          (click)="OnEditEmailSave()"
+          class="button-save"
+        >
+          Save
+        </button>
+        <button
+          *ngIf="editingEmail"
+          (click)="CloseEditingMode()"
+          class="button-cancel"
+        >
+          Cancel
+        </button>
+      </td>
+    </tr>
+    <tr [ngClass]="{ editing: editingRights }">
+      <td class="table-category">Rights:</td>
+      <td class="table-value">
+        <div *ngIf="!editingRights">{{ getRightsName() }}</div>
+        <div *ngIf="editingRights">
+          <input
+            type="radio"
+            id="user"
+            name="user_rights"
+            [value]="false"
+            [(ngModel)]="valueRights"
+          />
+          <label for="user">User</label>
+          <input
+            type="radio"
+            id="admin"
+            name="user_rights"
+            [value]="true"
+            [(ngModel)]="valueRights"
+          />
+          <label for="admin">Admin</label>
+        </div>
+      </td>
+      <td class="table-edit">
+        <i
+          *ngIf="!editingRights"
+          (click)="OnEditRights()"
+          class="fa fa-edit"
+        ></i>
+        <button
+          *ngIf="editingRights"
+          (click)="OnEditRightsSave()"
+          class="button-save"
+        >
+          Save
+        </button>
+        <button
+          *ngIf="editingRights"
+          (click)="CloseEditingMode()"
+          class="button-cancel"
+        >
+          Cancel
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

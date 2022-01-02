@@ -1,0 +1,81 @@
+<div class="container-fluid vh-100 login-main-div">
+  <div class="row vh-100 d-flex justify-content-center">
+    <div class="col-md-6 my-auto">
+      <h1>PRINTOGRAM</h1>
+    </div>
+    <div class="col-md-6 my-auto">
+      <div class="row justify-self-center">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <form
+            class="form-container"
+            [formGroup]="loginForm"
+            name="loginFormGroup"
+            (ngSubmit)="onSubmit()"
+          >
+            <h1 class="h1-login">Login</h1>
+            <div id="input-wrap">
+              <div class="form-group">
+                <!--<label for="user_name">Username</label>-->
+                <input
+                  placeholder="Username"
+                  type="text"
+                  formControlName="user_name"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.user_name.errors }"
+                />
+                <div
+                  *ngIf="submitted && f.user_name.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f.user_name.errors.required">
+                    Username is required
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="password">Password</label>-->
+                <input
+                  placeholder="Password"
+                  type="password"
+                  formControlName="password"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                />
+                <div
+                  *ngIf="submitted && f.password.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f.password.errors.required">
+                    Password is required
+                  </div>
+                </div>
+              </div>
+              <button [disabled]="loading" class="btn btn-dark btn-block">
+                <span
+                  *ngIf="loading"
+                  class="spinner-border spinner-border-sm mr-1"
+                ></span>
+                Login
+              </button>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+              Incorrect Username or password
+            </div>
+          </form>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+    <div id="information">
+      <a href="https://www.facebook.com/fablabsiegen/"
+        ><i class="fa fa-facebook fa-4x"></i
+      ></a>
+      <a href="https://twitter.com/fablabsiegen?lang=en"
+        ><i class="fa fa-twitter fa-4x"></i
+      ></a>
+      <a href=""><i class="fa fa-info fa-4x"></i></a>
+    </div>
+  </div>
+</div>

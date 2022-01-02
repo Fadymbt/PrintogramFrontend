@@ -1,0 +1,65 @@
+
+<div class="info-container">
+    <table>
+        <tr [ngClass]="{'editing': editingName}">
+            <td class="table-category">Name:</td>
+            <td class="table-value">
+                <div *ngIf="!editingName">{{ selectedPrinter.name}}</div>
+                <input *ngIf="editingName" type="text" [(ngModel)]="valueName" placeholder="First Name">
+            </td>
+            <td class="table-edit">
+                <i *ngIf="!editingName" (click)="OnEditName()" class="fa fa-edit"></i>
+                <button *ngIf="editingName" (click)="OnEditNameSave()" class="button-save">Save</button>
+                <button *ngIf="editingName" (click)="CloseEditingMode()" class="button-cancel">Cancel</button>
+            </td>
+        </tr>
+        <tr [ngClass]="{'editing': editingName}">
+            <td class="table-category">IP Address:</td>
+            <td class="table-value">
+                <div *ngIf="!editingName">{{ selectedPrinter.name}}</div>
+                <input *ngIf="editingName" type="text" [(ngModel)]="valueName" placeholder="First Name">
+            </td>
+            <td class="table-edit">
+                <i *ngIf="!editingName" (click)="OnEditName()" class="fa fa-edit"></i>
+                <button *ngIf="editingName" (click)="OnEditNameSave()" class="button-save">Save</button>
+                <button *ngIf="editingName" (click)="CloseEditingMode()" class="button-cancel">Cancel</button>
+            </td>
+        </tr>
+        <tr [ngClass]="{'editing': editingName}">
+            <td class="table-category">Port:</td>
+            <td class="table-value">
+                <div *ngIf="!editingName">{{ selectedPrinter.name}}</div>
+                <input *ngIf="editingName" type="text" [(ngModel)]="valueName" placeholder="First Name">
+            </td>
+            <td class="table-edit">
+                <i *ngIf="!editingName" (click)="OnEditName()" class="fa fa-edit"></i>
+                <button *ngIf="editingName" (click)="OnEditNameSave()" class="button-save">Save</button>
+                <button *ngIf="editingName" (click)="CloseEditingMode()" class="button-cancel">Cancel</button>
+            </td>
+        </tr>
+        <tr [ngClass]="{'editing': editingName}">
+            <td class="table-category">Octoprint API:</td>
+            <td class="table-value">
+                <div *ngIf="!editingName">{{ selectedPrinter.name}}</div>
+                <input *ngIf="editingName" type="text" [(ngModel)]="valueName" placeholder="First Name">
+            </td>
+            <td class="table-edit">
+                <i *ngIf="!editingName" (click)="OnEditName()" class="fa fa-edit"></i>
+                <button *ngIf="editingName" (click)="OnEditNameSave()" class="button-save">Save</button>
+                <button *ngIf="editingName" (click)="CloseEditingMode()" class="button-cancel">Cancel</button>
+            </td>
+        </tr>
+        <tr [ngClass]="{'editing': editingName}">
+            <td class="table-category">Camera URL:</td>
+            <td class="table-value">
+                <div *ngIf="!editingName">{{ selectedPrinter.name}}</div>
+                <input *ngIf="editingName" type="text" [(ngModel)]="valueName" placeholder="First Name">
+            </td>
+            <td class="table-edit">
+                <i *ngIf="!editingName" (click)="OnEditName()" class="fa fa-edit"></i>
+                <button *ngIf="editingName" (click)="OnEditNameSave()" class="button-save">Save</button>
+                <button *ngIf="editingName" (click)="CloseEditingMode()" class="button-cancel">Cancel</button>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,93 @@
+<!-- <div *ngFor="let status of statuses">
+  <div class="status-container">
+    <p>{{ status.content }}</p>
+  </div>
+  <br />
+</div> -->
+
+<div
+  *ngIf="deleteSucess"
+  [ngClass]="FadeOutSuccessMsg()"
+  class="alert alert-success"
+>
+  Status Deleted Successfully
+</div>
+
+<div
+  class="no-statuses-container d-flex align-items-center justify-content-center"
+  *ngIf="statuses.length === 0"
+>
+  <h2>You don't have any posts</h2>
+</div>
+
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+  <div class="container" *cdkVirtualFor="let status of statuses">
+    <div class="status-container">
+      <div class="row">
+        <div class="col-md-12">
+          <div
+            *ngIf="status.content.length < 130"
+            class="col-md-10 status-text-div"
+          >
+            {{ status.content }}
+          </div>
+          <div
+            *ngIf="status.content.length > 130 && !expand"
+            class="col-md-10 status-text-div"
+          >
+            {{ status.content | slice: 0:130 }}...
+            <a
+              href="javascript:;"
+              *ngIf="status.content.length > 130 && !expand"
+              (click)="expand = true"
+            >
+              Read More
+            </a>
+          </div>
+          <div
+            *ngIf="status.content.length > 130 && expand"
+            class="col-md-10 status-text-div"
+          >
+            {{ status.content }}
+            <a
+              href="javascript:;"
+              *ngIf="status.content.length > 130 && expand"
+              (click)="expand = false"
+            >
+              Read Less
+            </a>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-md-9">
+              <span id="date-span">
+                Created: {{ getDate(status.created) }}</span
+              >
+            </div>
+            <div class="col-md-3">
+              <div *ngIf="status.file_id">
+                <button
+                  [disabled]="previewModelLoading"
+                  class="btn btn-dark btn-block preview-button"
+                  (click)="previewModel(status.file_id)"
+                >
+                  <div [innerHTML]="showPreviewButtonText()"></div>
+                </button>
+              </div>
+                <button class="btn btn-dark btn-block remove-file-button" (click)="deleteStatus(status._id)">
+                  <i class="fa fa-trash"></i>
+                  <span> Remove </span>
+                </button>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-1">
+          <button class="remove-file-button" (click)="deleteStatus(status._id)">
+            <i class="fa fa-trash fa-2x"></i>
+          </button>
+        </div>-->
+      </div>
+    </div>
+    <br />
+  </div>
+  <br />
+</cdk-virtual-scroll-viewport>

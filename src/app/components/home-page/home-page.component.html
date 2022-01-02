@@ -1,0 +1,112 @@
+<!--<h1 class="text-center mt-2">News Feed</h1>-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="container status-container">
+        <div class="row">
+          <div class="col-md-12">
+            <form
+              class="form-container"
+              [formGroup]="statusForm"
+              name="statusFormGroup"
+            >
+              <div class="form-group">
+                <textarea
+                  placeholder="Hey {{ getFirstName() }}! What's on your mind?"
+                  type="text"
+                  formControlName="status_content"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && f.status_content.errors
+                  }"
+                >
+                </textarea>
+                <div
+                  *ngIf="submitted && f.status_content.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="f.status_content.errors.required">
+                    Please write something in your status
+                  </div>
+                </div>
+                <div class="button-wrap clearfix">
+                  <div class="chosen-file-div pull-left">
+                    <button
+                      class="attach-file-button btn btn-dark"
+                      (click)="openFilesDialog()"
+                    >
+                      <i class="fa fa-plus fa-1x"></i>
+                      <span *ngIf="fileName"> {{ fileName }}</span>
+                      <span *ngIf="!fileName"> Attach </span>
+                      <button
+                        *ngIf="fileName"
+                        class="remove-file-button"
+                        (click)="removeFile()"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </button>
+                  </div>
+                  <div class="pull-right">
+                    <button class="btn btn-dark" (click)="onSubmit()">
+                      Post
+                    </button>
+                  </div>
+                  <!-- <div class="invalid-feedback"></div> -->
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+<!--<h1 class="text-center mt-2">Statuses</h1>-->
+
+<div class="divider">
+  <button
+    class="btn btn-dark all-post-btn"
+    (click)="viewMode = 'all-posts'"
+    [ngStyle]="{
+      'background-color': viewMode === 'all-posts' ? '#ffd953' : '#c4c4c4'
+    }"
+  >
+    All Posts
+  </button>
+  <button
+    class="btn btn-dark my-posts-btn"
+    (click)="viewMode = 'my-posts'"
+    [ngStyle]="{
+      'background-color': viewMode === 'my-posts' ? '#ffd953' : '#c4c4c4'
+    }"
+  >
+    My Posts
+  </button>
+</div>
+
+<div class="container">
+  <div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8" [ngSwitch]="viewMode">
+        <div *ngSwitchCase="'all-posts'">
+          <div *ngFor="let status of statuses; let i = index">
+            <app-status [status]="status" [index]="i"></app-status>
+          </div>
+        </div>
+
+        <div class="my-status-div" *ngSwitchCase="'my-posts'">
+          <app-profile-status
+            (refreshStatuses)="refreshStatuses($event)"
+          ></app-profile-status>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

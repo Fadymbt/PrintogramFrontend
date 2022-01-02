@@ -1,0 +1,46 @@
+.upload-section-container {
+  margin-top: 5vh;
+  padding: 15px;
+  background: #fff !important;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+  transition: width 0.1s ease;
+  background-image: -webkit-linear-gradient(
+      -45deg,
+      transparent 33%,
+      rgba(0, 0, 0, 0.1) 33%,
+      rgba(0, 0, 0, 0.1) 66%,
+      transparent 66%
+    ),
+    -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
+    -webkit-linear-gradient(left, #FFD953, rgba(214, 161, 26, 1));
+
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+.progress-bar {
+  width: 70%;
+  border-radius: 10px;
+}
+
+.btn {
+  width: 100%;
+}
+
+h5 {
+  color: black;
+}
+
+.bytes-div {
+  color: black;
+}
+
+.percentage-div {
+  color: black;
+}

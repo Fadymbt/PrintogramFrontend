@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 profile-container">
+
+      <div class="top-profile">
+        <div class="profile-pic">
+          <label for="file-upload">
+            <i class="fa fa-camera"></i>
+          </label>
+          <div class="image-cropper">
+            <img class="profile-img" src="{{ userProfilePicSrc }}" alt="Avatar" />
+          </div>
+          <input
+            id="file-upload"
+            type="file"
+            (change)="onDrop($any($event.target).files)"
+          />
+        </div>
+        <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+      </div>
+
+      <div *ngIf="percentage | async as pct">
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <progress class="progress-bar" [value]="pct" max="100"></progress>
+          </div>
+          <div class="row d-flex justify-content-center percentage-div">
+            {{ pct | number: "1.2-2" }}%
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-flex justify-content-center"
+        *ngIf="snapshot | async as snap"
+      >
+        <div class="container">
+          <div class="row d-flex justify-content-center bytes-div">
+            {{ snap.bytesTransferred * (1 / 1000) | number: "1.2-2" }} KB of
+            {{ snap.totalBytes * (1 / 1000) | number: "1.2-2" }} KB
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-profile">
+        <div class="pull-left">
+          <div class="user-tag">
+            <span>Username:</span>
+          </div>
+          <div class="user-tag">
+            <span>E-mail Adresse:</span>
+          </div>
+          <div class="user-tag">
+            <span>Rights:</span>
+          </div>
+          <div class="user-tag">
+            <span>Password:</span>
+          </div>
+        </div>
+        <div class="">
+          <div class="tag-info">
+            <span>{{ user.user_name }}</span>
+          </div>
+          <div class="tag-info">
+            <span>{{ user.email }}</span>
+          </div>
+          <div class="tag-info">
+            <span *ngIf="AdminStatus$ | async">Administrator</span>
+            <span *ngIf="!(AdminStatus$ | async)">User</span>
+          </div>
+          <div class="tag-info">
+            <button class="btn btn-dark" (click)="openChangeDialog()">
+              {{ changePasswordString }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- <h1 class="text-center mt-2">Hello {{ user.first_name }}</h1>
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td class="text-center">Username</td>
+            <td class="text-center">{{ user.user_name }}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Last Name</td>
+            <td class="text-center">{{ user.last_name }}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Email</td>
+            <td class="text-center">{{ user.email }}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Password</td>
+            <td class="text-center">
+              <button class="btn btn-dark" (click)="showChangePassword()">
+                {{ changePasswordString }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>-->
+    </div>
+    <div class="col-md-2"></div>
+    <!--    <div class="col-md-6">
+      <app-profile-status></app-profile-status>
+    </div>
+    <div class="col-md-1"></div>-->
+  </div>
+</div>
+
+<!--<app-change-password *ngIf="isShown"></app-change-password>-->

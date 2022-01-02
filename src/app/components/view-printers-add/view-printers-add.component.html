@@ -1,0 +1,13 @@
+
+<div class="headline">Add Printer</div>
+<div class="fields">
+    <input type="text" placeholder="Name" [(ngModel)]="valueName">
+    <input type="text" placeholder="IP Address" [(ngModel)]="valueAddress">
+    <input type="text" placeholder="Port" [(ngModel)]="valuePort">
+    <input type="text" placeholder="Octoprint API" [(ngModel)]="valueAPI">
+    <input type="text" placeholder="Camera URL" [(ngModel)]="valueCamera">    
+</div>
+<div class="buttons">
+    <button (click)="addPrinter()" class="add">Add</button>
+    <button mat-dialog-close class="cancel">Cancel</button>
+</div>

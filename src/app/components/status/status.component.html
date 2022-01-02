@@ -1,0 +1,125 @@
+<div class="status-container">
+  <div class="row">
+    <div class="col-lg-2 d-flex justify-content-end">
+      <div class="image-cropper">
+        <img
+          class="profile-img"
+          src="{{
+            status.profile_picture
+              ? status.profile_picture
+              : '../../../assets/images/default.jpeg'
+          }}"
+          alt="Avatar"
+        />
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <h2>{{ status.first_name }}</h2>
+      <span>@{{ status.user_name }}</span>
+    </div>
+    <div class="col-md-7 d-flex justify-content-end">
+      <span id="date-span"> {{ getDate(status.status.created) }}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div
+      *ngIf="status.status.content.length < 150"
+      class="col-md-10 status-text-div"
+    >
+      {{ status.status.content }}
+    </div>
+    <div
+      *ngIf="status.status.content.length > 150 && !expand"
+      class="col-md-10 status-text-div"
+    >
+      {{ status.status.content | slice: 0:150 }}...
+      <a
+        href="javascript:;"
+        *ngIf="status.status.content.length > 150 && !expand"
+        (click)="expand = true"
+      >
+        Read More
+      </a>
+    </div>
+    <div
+      *ngIf="status.status.content.length > 150 && expand"
+      class="col-md-10 status-text-div"
+    >
+      {{ status.status.content }}
+      <a
+        href="javascript:;"
+        *ngIf="status.status.content.length > 150 && expand"
+        (click)="expand = false"
+      >
+        Read Less
+      </a>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-md-9">
+      <!-- <span id="date-span"> Created: {{ getDate(status.status.created) }}</span> -->
+    </div>
+    <div class="col-lg-3">
+      <button
+        *ngIf="status.status.file_id"
+        [disabled]="previewModelLoading"
+        class="btn btn-dark btn-block preview-button"
+        (click)="previewModel(status.status.file_id)"
+      >
+        <div [innerHTML]="showPreviewButtonText()"></div>
+      </button>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-md-4">
+      <button
+        [ngStyle]="{ color: isLiked ? '#ffd953' : 'black' }"
+        class="btn status-icons"
+        (click)="likeDislikeStatus()"
+      >
+        <i class="fa fa-thumbs-up fa-2x"></i>
+        <span
+          [ngStyle]="{ color: isLiked ? '#ffd953' : 'black' }"
+          class="counter-span"
+        >
+          {{ numberOfLikes > 0 ? numberOfLikes : 0 }}</span
+        >
+      </button>
+      <button class="btn status-icons" (click)="showComments = !showComments">
+        <i class="fa fa-comment fa-2x"></i>
+        <span class="counter-span">{{
+          commentsSize > 0 ? commentsSize : 0
+        }}</span>
+      </button>
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+  <div *ngIf="showComments">
+    <div class="container-fluid">
+      <div class="row" *ngFor="let comment of comments">
+        <div class="col-md-12 comment-div">
+          <app-comment [comment]="comment"></app-comment>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="delete-message"
+    *ngIf="emptyText"
+    [ngClass]="FadeOutEmptyText()"
+    class="alert alert-danger"
+  >
+    <span> You must write something first...! </span>
+  </div>
+  <div *ngIf="showComments">
+    <textarea
+      id="comment-textarea"
+      class="form-control"
+      [(ngModel)]="commentContent"
+      (keydown.enter)="addComment()"
+      placeholder="Write a comment..."
+    ></textarea>
+  </div>
+</div>
+<br />

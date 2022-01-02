@@ -1,0 +1,162 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.search-box {
+    border-radius: 100px;
+    overflow: hidden;
+    margin: 20px;
+    border: solid 1px lightgrey;
+  }
+  
+  .search-box i {
+    padding-left: 5px;
+    color: #5e5e5e;
+  }
+  
+  .search-box input{
+    width: 10vw;
+    outline: none;
+    background-color: none;
+    border: none;
+  }
+
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    margin: 0 10px;
+    height: 100%;
+}
+
+.bottom-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.bottom-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.headline {
+    border: solid 1px grey;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    color: grey;
+    font-weight: bold;
+}
+
+.headline.accessible {
+    color: #1AD687;
+    border-color: #1AD687;
+}
+
+.headline.unaccessible {
+    color: #D04848;
+    border-color: #D04848;
+}
+
+.printer-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+    overflow-y: scroll;
+}
+
+.printer, .printer-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.printer {
+    justify-content: space-between;
+    user-select: none;
+}
+
+.printer:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.printer-hide {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+    align-items: center;
+    width: 100%;
+}
+
+.printer-left {
+    margin-left: 10px;
+}
+
+.user-pic {
+    background-color: gray;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-pic img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.printer-left i {
+    font-size: 28px;
+    color: darkgray;
+}
+
+.printer-text {
+    margin-left: 10px;
+}
+
+.printer-name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.printer-user-count {
+    font-size: 12px;
+}
+
+.printer-button {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: grey;
+}
+
+.printer-button.add:hover {
+    color: #1AD687;
+}
+
+.printer-button.remove:hover {
+    color: #D04848;
+}
+
+.middle-line {
+    background-color: lightgrey;
+    width: 1px;
+}
+

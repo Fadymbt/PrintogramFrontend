@@ -1,0 +1,15 @@
+h1 {
+  font-family: Revamped;
+  color: white !important;
+}
+
+body {
+  background-image: url("../../../assets/images/wallpaper_bw.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container-fluid {
+  margin-top: 18vh;
+}

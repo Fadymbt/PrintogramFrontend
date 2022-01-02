@@ -1,0 +1,20 @@
+
+<div class="window-container">
+    <div class="headline">Delete User</div>
+    <div class="user-card">
+        <div class="user-pic">
+            <img src="{{ getUserProfilePicSrc() }}" alt="Avatar">
+        </div>
+        <div class="user-info">
+            <div class="name">{{ user.first_name + " " + user.last_name }}</div> 
+            <div class="email">{{ user.email }}</div>          
+        </div>
+    </div>
+
+
+    <div class="buttons-container">
+        <button mat-dialog-close="delete" class="delete">Delete</button>
+        <button mat-dialog-close="cancel" class="cancel">Cancel</button>          
+    </div>
+</div>
+

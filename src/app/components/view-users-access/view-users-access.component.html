@@ -1,0 +1,44 @@
+
+<div class="top">
+    <div class="search-box">
+        <i class="fa fa-search"></i>
+        <input type="text" placeholder="Search" [(ngModel)]="searchInput"> 
+    </div>
+</div>
+<div class="bottom">
+    <div class="bottom-left">
+        <div class="headline accessible"><i class="fa fa-check-circle"></i> Accessible Printers</div>
+        <div class="printer-container">
+            <div *ngFor="let printer of printersAccessTrue" class="printer printer-accessible">
+                <div *ngIf="comparePrinterToInput(printer)" class="printer-hide">
+                    <div class="printer-left">
+                        <i class="fa fa-print"></i>
+                        <div class="printer-text">
+                            <div class="printer-name">{{ printer.name }}</div>
+                            <div class="printer-user-count">{{ printer.access_user_id.length + " Users"}}</div>
+                        </div>
+                    </div>
+                    <i (click)="removeAccess(printer)" class="fa fa-minus-circle printer-button remove"></i>                    
+                </div>
+            </div>
+            </div>
+        </div>
+    <div class="middle-line"></div>
+    <div class="bottom-right">
+        <div class="headline unaccessible"><i class="fa fa-times-circle"></i> Unaccessible Printers</div>
+        <div class="printer-container">
+            <div *ngFor="let printer of printersAccessFalse" class="printer printer-accessible">
+                <div *ngIf="comparePrinterToInput(printer)" class="printer-hide">
+                    <div class="printer-left">
+                        <i class="fa fa-print"></i>
+                        <div class="printer-text">
+                            <div class="printer-name">{{ printer.name }}</div>
+                            <div class="printer-user-count">{{ printer.access_user_id.length + " Users"}}</div>
+                        </div>
+                    </div>
+                    <i (click)="giveAccess(printer)" class="fa fa-plus-circle printer-button add"></i>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

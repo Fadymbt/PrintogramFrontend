@@ -1,0 +1,119 @@
+
+
+.status-container {
+  margin-top: 5vh;
+  padding: 15px 15px 0 15px;
+  background: #fff !important;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+/* make sure the div of my-posts is visible */
+.my-status-div {
+  height: 50vh;
+}
+.divider {
+  display: flex;
+  justify-content: center;
+  margin: 3vh;
+}
+
+.divider button:focus {outline:0;}
+
+.all-post-btn {
+  border-radius: 50px 0 0 50px;
+  /* background-color: #ffd953; */
+  border: none;
+  color: black;
+}
+
+.my-posts-btn {
+  border-radius: 0 50px 50px 0;
+  /* background-color: #c4c4c4; */
+  border: none;
+  color: black;
+}
+h1 {
+  color: #fff;
+}
+
+input {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  height: 10vh;
+  resize: none;
+}
+
+/*button {
+  width: 20vh;
+}*/
+
+.button-wrap{
+  margin-top: 1rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.pull-right .btn {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  background: #FFD953;
+  border-radius: 45px;
+  border-width: 0 ;
+  min-width: 110px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  color:  rgba(19, 19, 19, 0.72);
+}
+.pull-left .btn {
+  background: #C4C4C4;
+  border-radius: 45px;
+  border-width: 0 ;
+  min-width: 110px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  color:  rgba(19, 19, 19, 0.72);
+}
+i {
+  color: rgba(19, 19, 19, 0.72) !important; ;
+}
+
+/*.chosen-file-div {
+  margin-top: 5px;
+}*/
+
+.remove-file-button {
+  vertical-align: middle !important;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  width: min-content;
+}
+
+/*.chosen-file-div > .attach-file-button {
+  vertical-align: middle !important;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  width: min-content;
+}
+
+.chosen-file-div > span {
+  vertical-align: middle !important;
+  color: #fff;
+}*/
+
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}

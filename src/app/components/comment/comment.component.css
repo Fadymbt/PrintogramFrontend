@@ -1,0 +1,40 @@
+h4 {
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: medium;
+}
+
+p {
+  font-size: small;
+}
+
+.image-cropper {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.image-cropper .profile-img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+
+.comment-div {
+  background-color: #e9ecef;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+
+#date-span {
+  color: black; /* Fallback for older browsers */
+  color: rgba(1, 1, 1, 0.5);
+  font-size: 8pt;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}

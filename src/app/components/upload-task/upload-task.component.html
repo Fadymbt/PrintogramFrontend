@@ -1,0 +1,57 @@
+                                                                                                                                                                                                                                                                              <div class="container upload-section-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+        <h5>{{ file.name }}</h5>
+      </div>
+
+      <div *ngIf="percentage | async as pct">
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <progress class="progress-bar" [value]="pct" max="100"></progress>
+          </div>
+          <div class="row d-flex justify-content-center percentage-div">
+            {{ pct | number: "1.2-2" }}%
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="d-flex justify-content-center"
+        *ngIf="snapshot | async as snap"
+      >
+        <div class="container">
+          <div class="row d-flex justify-content-center bytes-div">
+            {{ snap.bytesTransferred * (1 / 1000000) | number: "1.2-2" }} MB of
+            {{ snap.totalBytes * (1 / 1000000) | number: "1.2-2" }} MB
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2">
+              <button
+                class="btn btn-primary"
+                (click)="task.pause()"
+                [disabled]="!isActive(snap)"
+              >
+                Pause
+              </button>
+            </div>
+            <div class="col-sm-2">
+              <button
+                class="btn btn-success"
+                (click)="task.resume()"
+                [disabled]="!(snap?.state === 'paused')"
+              >
+                Resume
+              </button>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+            </div>
+            <div class="col-sm-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

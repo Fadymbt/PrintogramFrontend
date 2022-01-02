@@ -1,0 +1,61 @@
+
+.headline {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 40px; 
+}
+
+.user-pic {
+    background-color: pink;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user-pic img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.user-info {
+    margin-left: 15px;
+}
+
+.user-info .name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-info .email {
+    font-size: 12px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+button {
+    font-size: 14px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 99px;
+    padding: 5px 15px;
+}
+
+button.delete {
+    background-color: #D04848;
+    color: white;
+}
+
+button.cancel {
+    background-color: lightgray;
+}

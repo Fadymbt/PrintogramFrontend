@@ -1,0 +1,170 @@
+<div *ngIf="refreshFilesIn">{{ getFiles() }}</div>
+
+<div class="container files-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="upload-wrap">
+        <div id="delete-message"
+             *ngIf="deleteSucess"
+             [ngClass]="FadeOutSuccessMsg()"
+             class="alert alert-success"
+        >
+          <span>File Deleted Successfully</span>
+        </div>
+        <div id="searchbar">
+          <span class="input-group-addon" style="background-color: #fff"
+          ><span class="glyphicon glyphicon-search"></span
+          ></span>
+          <input
+            type="text"
+            class="form-control"
+            id="search-input"
+            placeholder="&#xf002; Search..."
+          />
+        </div>
+        <mat-accordion class="overflow-auto">
+          <mat-expansion-panel class="file-list row" *ngFor="let file of downloadFiles" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h6 class="filename">{{ file.original_name }}</h6>
+                <p id="date-span"> {{ getDate(file.created) }}</p>
+              </mat-panel-title>
+              <mat-panel-description>
+       <!--         <h6 class="filename">{{ file.original_name }}</h6>-->
+           <!--     <span id="date-span"> {{ getDate(file.created) }}</span>-->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="button-wrap">
+              <div class="preview-button">
+                <button
+                  [disabled]="previewModelLoading"
+                  class="btn btn-dark btn-block"
+                  (click)="previewModel(file)"
+                >
+                  <div [innerHTML]="showPreviewButtonText()"></div>
+                </button>
+              </div>
+              <div class="download-button">
+                <a
+                  class="btn btn-success btn-block"
+                  [href]="file.download_url"
+                  onclick="return"
+                >
+                  <i class="fa fa-download"></i><!-- Download-->
+                </a>
+              </div>
+              <div class="delete-button">
+                <button
+                  class="btn btn-danger btn-block"
+                  (click)="deleteFile(file)"
+                >
+                  <i class="fa fa-trash"></i>
+             <!--   Delete-->
+                </button>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+       <!-- <div class="file-list row" *ngFor="let file of downloadFiles">
+            <button  class="filename-time col-md-9">
+              <h6 class="filename">{{ file.original_name }}</h6>
+              <span id="date-span"> {{ getDate(file.created) }}</span>
+            </button>
+            <div class="button-wrap col-md-3">
+              <div class="preview-button">
+                <button
+                  [disabled]="previewModelLoading"
+                  class="btn btn-dark btn-block"
+                  (click)="previewModel(file)"
+                >
+                  <div [innerHTML]="showPreviewButtonText()"></div>
+                </button>
+              </div>
+              <div class="download-button">
+                <a
+                  class="btn btn-success btn-block"
+                  [href]="file.download_url"
+                  onclick="return"
+                >
+                  <i class="fa fa-download"></i>
+                  &lt;!&ndash;Download&ndash;&gt;
+                </a>
+              </div>
+              <div class="delete-button">
+                <button
+                  class="btn btn-danger btn-block"
+                  (click)="deleteFile(file)"
+                >
+                  <i class="fa fa-trash"></i>
+                 &lt;!&ndash; Delete&ndash;&gt;
+                </button>
+              </div>
+            </div>
+
+        </div>-->
+      </div>
+     <!-- <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td
+              colspan="4"
+              *ngIf="deleteSucess"
+              [ngClass]="FadeOutSuccessMsg()"
+              class="alert alert-success"
+            >
+              File Deleted Successfully
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="input-group-addon" style="background-color: #fff"
+                ><span class="glyphicon glyphicon-search"></span
+              ></span>
+              <input
+                type="text"
+                class="form-control"
+                id="search-input"
+                placeholder="&#xf002; Search..."
+              />
+            </td>
+          </tr>
+          <tr *ngFor="let file of downloadFiles">
+            <td class="align-middle">
+              <h5>{{ file.original_name }}</h5>
+              <span id="date-span"> Uploaded: {{ getDate(file.created) }}</span>
+            </td>
+            <td class="text-right align-middle">
+              <button
+                [disabled]="previewModelLoading"
+                class="btn btn-dark btn-block"
+                (click)="previewModel(file)"
+              >
+                <div [innerHTML]="showPreviewButtonText()"></div>
+              </button>
+            </td>
+            <td class="text-right align-middle">
+              <a
+                class="btn btn-success btn-block"
+                [href]="file.download_url"
+                onclick="return"
+              >
+                <i class="fa fa-download"></i>
+                Download
+              </a>
+            </td>
+            <td class="text-center align-middle">
+              <button
+                class="btn btn-danger btn-block"
+                (click)="deleteFile(file)"
+              >
+                <i class="fa fa-trash"></i>
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>-->
+    </div>
+  </div>
+</div>

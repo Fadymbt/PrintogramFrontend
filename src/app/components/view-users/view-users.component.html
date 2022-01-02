@@ -1,0 +1,157 @@
+<div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+  Sorry, something went wrong
+</div>
+
+<div class="area-container">
+  <div class="area-left col-md-3">
+    <div class="area-left-top">
+      <div class="area-header">
+        <div class="area-header-text">
+          <span class="area-header-text-main">Users </span>{{ users.length }}
+        </div>
+        <div class="search-box">
+          <i class="fa fa-search"></i>
+          <input
+            type="text"
+            placeholder="Search"
+            [(ngModel)]="searchInputUsers"
+          />
+        </div>
+      </div>
+      <div class="area-header-line"></div>
+    </div>
+    <div class="user-card-container">
+      <div
+        *ngFor="let user of users"
+        class="user-card"
+        [ngClass]="{ selected: user == selectedUser }"
+        (click)="OnSelectUser(user)"
+      >
+        <div *ngIf="CompareUserToSearchInput(user)" class="user-card-hideable">
+          <div class="user-picture">
+            <img
+              class="profile-img"
+              src="{{ getUserProfilePicSrc(user) }}"
+              alt="Avatar"
+            />
+          </div>
+          <div class="user-information">
+            <div class="user-name">
+              {{ user.first_name + " " + user.last_name }}
+            </div>
+            <div class="user-email">{{ user.email }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="area-left-bottom">
+      <div class="area-buttom-line"></div>
+      <button class="button-add-user" (click)="openAddUserDialog()">
+        <i class="fa fa-user-plus"></i> Add User
+      </button>
+    </div>
+  </div>
+
+  <div class="area-center col-md-6">
+    <div *ngIf="selectedUser" class="mainpage">
+      <div class="mainpage-header">
+        <div class="mainpage-picture">
+          <img
+            class="profile-img"
+            src="{{ getUserProfilePicSrc(selectedUser) }}"
+            alt="Avatar"
+          />
+        </div>
+        <div class="mainpage-name">
+          {{ selectedUser.first_name + " " + selectedUser.last_name }}
+        </div>
+        <!--
+        <div class="top-profile">
+          <div class="profile-pic">
+            <img
+              class="profile-img"
+              src="{{ userProfilePicSrc }}"
+              alt="Avatar"
+            />
+          </div>
+          <h4>{{ selectedUser.first_name + " " + selectedUser.last_name }}</h4>
+        </div>
+        -->
+        <div class="mainpage-line"></div>
+        <div class="mainpage-submenu">
+          <ul class="mainpage-navbar">
+            <li
+              (click)="OnSelectSubmenuInfo()"
+              class="mainpage-navbar-info"
+              [ngClass]="{ selected: submenuInfoSelected }"
+            >
+              Information
+            </li>
+            <li
+              (click)="OnSelectSubmenuAccess()"
+              class="mainpage-navbar-access"
+              [ngClass]="{ selected: submenuAccessSelected }"
+            >
+              Printer Access
+            </li>
+          </ul>
+          <div class="mainpage-navbuttons">
+            <button
+              (click)="openDeleteUserDialog()"
+              *ngIf="!selectedUser.is_admin"
+              class="delete"
+            >
+              <i class="fa fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mainpage-body">
+        <app-view-users-info
+          (refreshUsers)="refreshUsers()"
+          *ngIf="submenuInfoSelected"
+          [selectedUser]="selectedUser"
+        ></app-view-users-info>
+        <app-view-users-access
+          *ngIf="submenuAccessSelected"
+          [selectedUser]="selectedUser"
+        ></app-view-users-access>
+      </div>
+    </div>
+  </div>
+  <div class="area-right col-md-3"></div>
+</div>
+
+<!-- 
+<div class="container users-container">
+  <h1 class="text-center mt-2">Users</h1>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td
+              colspan="2"
+              *ngIf="deleteSucess"
+              [ngClass]="FadeOutSuccessMsg()"
+              class="alert alert-success"
+            >
+              User Deleted Successfully
+            </td>
+          </tr>
+          <tr *ngFor="let user of users">
+            <td class="text-center">
+              {{ user.first_name + " " + user.last_name }}
+            </td>
+            <td class="text-center">
+              <button class="btn btn-danger" (click)="deleteUsers(user)">
+                Delete User
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+ -->

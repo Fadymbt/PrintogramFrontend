@@ -1,0 +1,36 @@
+/* make sure the gcode preview dialog does not have a background image */
+
+
+::ng-deep.mat-dialog-container {
+  background-image: none !important;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.dialog-container {
+  border: 0 solid #fff;
+  border-radius: 10px;
+  padding: 15px 15px;
+  background-color: rgba(118, 86, 134, 0.5);
+  -webkit-box-shadow: 15px 15px 47px 19px rgba(153, 50, 204, 1);
+  -moz-box-shadow: 15px 15px 47px 19px rgba(153, 50, 204, 1);
+  box-shadow: 15px 15px 47px 19px rgba(153, 50, 204, 1);
+}
+
+.close_button_div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close_button_div > .attach-file-button {
+  vertical-align: middle !important;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  width: min-content;
+}

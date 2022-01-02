@@ -1,0 +1,41 @@
+
+.headline {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.fields input {
+    border: solid 1px gray;
+    border-radius: 99px;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.buttons button {
+    border: none;
+    border-radius: 99px;
+    font-size: 14px;
+    padding: 5px 15px;
+}
+
+.buttons .add {
+    background-color: gold;
+}
+
+.buttons .cancel {
+    background-color: lightgray;
+}

@@ -1,0 +1,45 @@
+<div class="container dialog-container">
+  <div class="container files-container">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td>
+                <span class="input-group-addon" style="background-color: #fff"
+                  ><span class="glyphicon glyphicon-search"></span
+                ></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="search-input"
+                  placeholder="&#xf002; Search..."
+                />
+              </td>
+            </tr>
+            <tr *ngFor="let file of files">
+              <td class="align-middle">
+                <h5>{{ file.original_name }}</h5>
+                <span id="date-span">
+                  Uploaded: {{ getDate(file.created) }}</span
+                >
+              </td>
+              <td class="text-center align-middle">
+                <button
+                  mat-button
+                  mat-dialog-close
+                  [mat-dialog-close]="file"
+                  class="btn btn-dark btn-block"
+                  (click)="selectFile(file)"
+                >
+                  <i class="fa fa-file"></i>
+                  Select
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

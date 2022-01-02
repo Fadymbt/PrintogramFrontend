@@ -1,0 +1,101 @@
+
+  <div class="area-container">
+    <div class="area-left col-md-3">
+      <div class="area-left-top">
+        <div class="area-header">
+          <div class="area-header-text">
+            <span class="area-header-text-main">Printers </span>{{ printers.length }}
+          </div>
+          <div class="search-box">
+            <i class="fa fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search"
+              [(ngModel)]="searchInputPrinters"
+            />
+          </div>
+        </div>
+        <div class="area-header-line"></div>
+      </div>
+      <div class="user-card-container"> <!-- printer list here -->
+        <div
+          *ngFor="let printer of printers"
+          class="user-card"
+          [ngClass]="{ selected: printer == selectedPrinter }"
+          (click)="onSelectPrinter(printer)"
+        >
+          <div *ngIf="compareUserToSearchInput(printer)" class="user-card-hideable">
+            <div class="user-picture">
+              <i class="fa fa-print"></i>
+            </div>
+            <div class="user-information">
+              <div class="user-name">
+                {{ printer.name }}
+              </div>
+              <div class="user-email">
+                {{ printer.status }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="area-left-bottom">
+        <div class="area-buttom-line"></div>
+        <button class="button-add-user" (click)="onOpenAddPrinterDialog()">
+          <i class="fa fa-user-plus"></i> Add Printer
+        </button>
+      </div>
+    </div>
+  
+    <div class="area-center col-md-6">
+      <div *ngIf="selectedPrinter" class="mainpage">
+        <div class="mainpage-header">
+          <div class="mainpage-picture">
+            <i class="fa fa-print"></i>
+          </div>
+          <div class="mainpage-name">
+            {{ selectedPrinter.name }}
+          </div>
+          <div class="mainpage-line"></div>
+          <div class="mainpage-submenu">
+            <ul class="mainpage-navbar">
+              <li
+                (click)="onSelectSubmenuInfo()"
+                class="mainpage-navbar-info"
+                [ngClass]="{ selected: submenuInfoSelected }"
+              >
+                Information
+              </li>
+              <li
+                (click)="onSelectSubmenuAccess()"
+                class="mainpage-navbar-access"
+                [ngClass]="{ selected: submenuAccessSelected }"
+              >
+                User Access
+              </li>
+              <li
+                (click)="onSelectSubmenuAssignments()"
+                class="mainpage-navbar-access"
+                [ngClass]="{ selected: submenuAssignmentsSelected }"
+              >
+                Current Assignments
+              </li>
+            </ul>
+            <div class="mainpage-navbuttons">
+              <button (click)="onOpenDeletePrinterDialog()" class="delete">
+                <i class="fa fa-trash"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mainpage-body">
+          <app-view-printers-info *ngIf="submenuInfoSelected" [selectedPrinter]="selectedPrinter"></app-view-printers-info>
+          <app-view-printers-access *ngIf="submenuAccessSelected"[selectedPrinterId]="selectedPrinter._id"></app-view-printers-access>
+          <app-view-printers-assignments *ngIf="submenuAssignmentsSelected"[selectedPrinter]="selectedPrinter"></app-view-printers-assignments>
+        </div>
+      </div>
+    </div>
+    <div class="area-right col-md-3"></div>
+  </div>
+  
+  
